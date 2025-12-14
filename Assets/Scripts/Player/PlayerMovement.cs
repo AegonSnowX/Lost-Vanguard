@@ -29,12 +29,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Snap input to 8 directions
         inputDirection = rawInput.normalized;
+/*
 
         // Optional: hard snap to exact directions (no floating error)
         inputDirection = new Vector2(
             Mathf.Round(inputDirection.x),
             Mathf.Round(inputDirection.y)
-        ).normalized;
+        ).normalized;*/
     }
 
     void FixedUpdate()
