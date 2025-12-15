@@ -11,41 +11,66 @@ public class PlayerInteraction : MonoBehaviour
 
     void Awake()
     {
+        //getting PlayerStateController component
+        if (stateController == null)
         stateController = GetComponent<PlayerStateController>();
 
     }
 
     void Update()
     {
-       
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null && stateController.CanInteract)
-        {
-            currentInteractable.Interact(stateController);
-        }
-        
-        if(Input.GetKeyDown(KeyCode.Escape)&& !stateController.CanInteract)
-        {
-             cancelableInteractable.StopInteract(stateController);
-        }
-
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
+        // If player is currently interacting with something
+        if (!stateController.CanInteract)
     {
-        Debug.Log("Trigger entered with " + other.name);
-        if (((1 << other.gameObject.layer) & interactableLayer) != 0)
+        // Check for cancel input 
+        if (Input.GetKeyDown(KeyCode.Escape) && cancelableInteractable != null)
         {
-            currentInteractable = other.GetComponent<IInteractable>();
-            cancelableInteractable = other.GetComponent<ICancelableInteractable>();
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.GetComponent<IInteractable>() == currentInteractable)
-        {
-            currentInteractable = null;
+            cancelableInteractable.StopInteract(stateController);
             cancelableInteractable = null;
+// Refocus on the current interactable if still in range
+              if (stateController.CanInteract && currentInteractable != null)
+    {
+        currentInteractable.Focus();
+    }
+        }
+        return;
+    }
+// Check for interaction input
+    if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+    {
+        currentInteractable.Interact(stateController);
+        cancelableInteractable = currentInteractable as ICancelableInteractable;
+    }
+  
+    }
+// Using trigger colliders to detect interactables
+     private void OnTriggerEnter2D(Collider2D other)
+    {
+        // If player cannot interact, ignore
+        if (!stateController.CanInteract)
+            return;
+
+        var interactable = other.GetComponent<IInteractable>();
+// If no interactable found, ignore
+        if (interactable == null)
+            return;
+// focusing on an interactable
+        currentInteractable = interactable;
+        currentInteractable.Focus();
+    }
+
+// Using trigger colliders to detect interactables when exiting
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var interactable = other.GetComponent<IInteractable>();
+        if (interactable == null)
+            return;
+// If exiting the current interactable, unfocus it
+        if (interactable == currentInteractable)
+        {
+            currentInteractable.Unfocus();
+            currentInteractable = null;
         }
     }
+   
 }
