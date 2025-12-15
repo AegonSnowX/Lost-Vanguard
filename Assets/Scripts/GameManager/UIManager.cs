@@ -3,7 +3,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
+public bool IsModalOpen { get; private set; }
     [SerializeField] private GameObject modalRoot;
 
     private void Awake()
@@ -14,11 +14,17 @@ public class UIManager : MonoBehaviour
 
     public void OpenModal()
     {
-        modalRoot.SetActive(true);
+         if (IsModalOpen) return;
+
+    IsModalOpen = true;
+    modalRoot.SetActive(true);
     }
 
     public void CloseModal()
     {
-        modalRoot.SetActive(false);
+        if (!IsModalOpen) return;
+
+    IsModalOpen = false;
+    modalRoot.SetActive(false);
     }
 }
