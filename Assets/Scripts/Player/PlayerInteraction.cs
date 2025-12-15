@@ -44,11 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         currentInteractable.Interact(stateController);
 
 
-        // change in future for differt interaction , come back to it later
-    
-         currentInteractable.Unfocus();
-
-         //
+       
         cancelableInteractable = currentInteractable as ICancelableInteractable;
         
 if (cancelableInteractable == null)
