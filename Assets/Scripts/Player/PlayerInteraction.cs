@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private IInteractable currentInteractable;
     private ICancelableInteractable cancelableInteractable;
+    private readonly List<IInteractable> interactablesInRange = new();
+
 
     void Awake()
     {
@@ -44,33 +47,60 @@ public class PlayerInteraction : MonoBehaviour
   
     }
 // Using trigger colliders to detect interactables
-     private void OnTriggerEnter2D(Collider2D other)
-    {
-        // If player cannot interact, ignore
-        if (!stateController.CanInteract)
-            return;
+ private void OnTriggerEnter2D(Collider2D other)
+{
+    if (!stateController.CanInteract) return;
 
-        var interactable = other.GetComponent<IInteractable>();
-// If no interactable found, ignore
-        if (interactable == null)
-            return;
-// focusing on an interactable
-        currentInteractable = interactable;
-        currentInteractable.Focus();
-    }
+    var interactable = other.GetComponent<IInteractable>();
+    if (interactable == null) return;
+
+    interactablesInRange.Add(interactable);
+    ResolveCurrentInteractable();
+}
+
 
 // Using trigger colliders to detect interactables when exiting
-    private void OnTriggerExit2D(Collider2D other)
+ private void OnTriggerExit2D(Collider2D other)
+{
+    var interactable = other.GetComponent<IInteractable>();
+    if (interactable == null) return;
+
+    interactablesInRange.Remove(interactable);
+
+    if (interactable == currentInteractable)
     {
-        var interactable = other.GetComponent<IInteractable>();
-        if (interactable == null)
-            return;
-// If exiting the current interactable, unfocus it
-        if (interactable == currentInteractable)
+        currentInteractable.Unfocus();
+        currentInteractable = null;
+        ResolveCurrentInteractable();
+    }
+}
+
+    private void ResolveCurrentInteractable()
+{
+    if (!stateController.CanInteract) return;
+
+    IInteractable best = null;
+    float bestDist = float.MaxValue;
+
+    foreach (var interactable in interactablesInRange)
+    {
+        var mb = interactable as MonoBehaviour;
+        if (mb == null) continue;
+
+        float dist = Vector2.Distance(transform.position, mb.transform.position);
+        if (dist < bestDist)
         {
-            currentInteractable.Unfocus();
-            currentInteractable = null;
+            bestDist = dist;
+            best = interactable;
         }
     }
+
+    if (best == currentInteractable) return;
+
+    currentInteractable?.Unfocus();
+    currentInteractable = best;
+    currentInteractable?.Focus();
+}
+
    
 }
