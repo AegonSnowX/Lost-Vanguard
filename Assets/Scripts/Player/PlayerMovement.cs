@@ -54,8 +54,15 @@ else{
             
         
 
-    void FixedUpdate()
+   void FixedUpdate()
+{
+    if (!stateController.CanMove)
     {
-        rb.linearVelocity = inputDirection * moveSpeed;
+        rb.linearVelocity = Vector2.zero;
+        return;
     }
+
+    rb.linearVelocity = inputDirection * moveSpeed;
+}
+
 }
