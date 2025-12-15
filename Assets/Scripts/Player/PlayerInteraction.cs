@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
    // [SerializeField] private float interactionRadius = 1.2f;
-    [SerializeField] private LayerMask interactableLayer;
+  //  [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private PlayerStateController stateController;
 
     private IInteractable currentInteractable;
@@ -42,8 +42,20 @@ public class PlayerInteraction : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
     {
         currentInteractable.Interact(stateController);
+
+
+        // change in future for differt interaction , come back to it later
+    
          currentInteractable.Unfocus();
+
+         //
         cancelableInteractable = currentInteractable as ICancelableInteractable;
+        
+if (cancelableInteractable == null)
+{
+    // Instant interaction, no modal state
+    stateController.UnlockAll();
+}
     }
   
     }
