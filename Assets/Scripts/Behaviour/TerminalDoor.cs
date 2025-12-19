@@ -28,12 +28,12 @@ private SpriteRenderer sr;
 
     public void Focus()
     {
-        sr.sprite = spriteon;
+     //   sr.sprite = spriteon;
     }
 
     public void Unfocus()
     {
-        sr.sprite = spriteoff;
+       // sr.sprite = spriteoff;
     }
 
     public void StopInteract(PlayerStateController player)
