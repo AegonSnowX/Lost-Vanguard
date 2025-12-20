@@ -22,7 +22,7 @@ private SpriteRenderer sr;
     {
       player.LockAll();
    // UIManager.Instance.OpenModal();
-    UIManager.Instance.OpenTerminal(TerminalType.MasterTerminal);
+   // UIManager.Instance.OpenTerminal(TerminalType.MasterTerminal);
     
     }
 
