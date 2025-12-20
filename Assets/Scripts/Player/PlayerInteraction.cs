@@ -22,9 +22,35 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
+        
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+            {
+    Debug.Log("MapOpen");
+    if (UIManager.Instance.CurrentModal == ModalEnum.None)
+    {
+        stateController.LockAll();
+        UIManager.Instance.OpenMap();
+    }
+    else if (UIManager.Instance.CurrentModal == ModalEnum.Map)
+    {
+        UIManager.Instance.CloseMap();
+        stateController.UnlockAll();
+    }
+}
+        
+
+
+
+
+
+
         // If player is currently interacting with something
         if (!stateController.CanInteract)
     {
+
+
+
         // Check for cancel input 
         if (Input.GetKeyDown(KeyCode.Escape) && cancelableInteractable != null)
         {
