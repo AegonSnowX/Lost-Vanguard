@@ -1,0 +1,42 @@
+* [33md23f1e1[m [1;34munknown[m [m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;33mtag: [m[1;33mv0.1.0-prototype[m[33m, [m[1;32mdevelopment[m[33m)[m[m
+[31m|[m [37mchore(prototype) : v0.1.0-prototype ready , backup before converting renderer pipeline[m [2;37m(81 seconds ago)[m
+*   [33m420bfca[m [1;34munknown[m [m[33m ([m[1;31morigin/development[m[33m)[m[m
+[32m|[m[33m\[m  [37mmerged with development[m [2;37m(6 hours ago)[m
+[32m|[m * [33m80987cb[m [1;34munknown[m [m[m
+[32m|[m [33m|[m [37madd (assets): assests added[m [2;37m(2 days ago)[m
+[32m|[m * [33m0de5f44[m [1;34munknown[m [m[m
+[32m|[m [33m|[m [37mfeat(map) : created a pocket map for player , functionality to later add inventory[m [2;37m(2 days ago)[m
+[32m|[m * [33m52dc43b[m [1;34munknown[m [m[m
+[32m|[m [33m|[m [37mfix(animation): fixed glitch in walk animation due to previous commit[m [2;37m(2 days ago)[m
+* [33m|[m [33m358f8d8[m [1;34munknown[m [m[m
+[33m|[m[33m/[m  [37madd (assets) : additional assests added need refinement[m [2;37m(6 hours ago)[m
+* [33m9debc2f[m [1;34munknown[m [m[m
+[33m|[m [37mfix(sprite): minor changes to player sprite and a working simple environment[m [2;37m(2 days ago)[m
+* [33md0b870e[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(environment) : basic tilemap and basic environment created[m [2;37m(4 days ago)[m
+* [33m7074e83[m [1;34munknown[m [m[m
+[33m|[m [37mfix(player): fix locomotion transitions using blend tree[m [2;37m(4 days ago)[m
+* [33mbbedc56[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(player): add basic movement and idle animations[m [2;37m(4 days ago)[m
+* [33m8739434[m [1;34mAegonSnowX[m [m[m
+[33m|[m [37mchore: Revise README for Project overview[m [2;37m(6 days ago)[m
+* [33m9ed6803[m [1;34munknown[m [m[m
+[33m|[m [37mfix(movement floating): when interacting players keeps moving fixed[m [2;37m(7 days ago)[m
+* [33mbc2136b[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(terminals):ui manager can open different types of terminals[m [2;37m(7 days ago)[m
+* [33me268a44[m [1;34munknown[m [m[m
+[33m|[m [37mchore: built a protype level to test the exisiting functionalities[m [2;37m(7 days ago)[m
+* [33m1f85524[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(interaction): refined prototype of player interaction complete[m [2;37m(8 days ago)[m
+* [33mb883aec[m [1;34munknown[m [m[m
+[33m|[m [37mrefactor(interaction):More refinement with UI control[m [2;37m(8 days ago)[m
+* [33m3307e08[m [1;34munknown[m [m[m
+[33m|[m [37mrefactor(interaction): more refined with ui output[m [2;37m(8 days ago)[m
+* [33m27a79bf[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(interaction): player states and interaction added[m [2;37m(8 days ago)[m
+* [33m0a2be4d[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(camera) : camera control added and movement snapping fixed[m [2;37m(8 days ago)[m
+* [33m3873b8c[m [1;34munknown[m [m[m
+[33m|[m [37mfeat(player Movement) : basic 8d playermovement)[m [2;37m(8 days ago)[m
+* [33mdc0402f[m [1;34mAegonSnowX[m [m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m[m
+  [37mInitial commit[m [2;37m(8 days ago)[m
