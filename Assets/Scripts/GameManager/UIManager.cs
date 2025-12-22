@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class UIManager : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject controlroomPanel;
 
     private GameObject currentPanel;
+    [SerializeField]private GameObject mapPanel;
     public bool IsModalOpen { get; private set; }
+
+public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
 
     private void Awake()
     {
@@ -76,4 +80,22 @@ public class UIManager : MonoBehaviour
         if (currentPanel != null)
             currentPanel.SetActive(false);
     }
+    public void OpenMap()
+{
+    if (CurrentModal != ModalEnum.None) return;
+
+    CurrentModal = ModalEnum.Map;
+    modalRoot.SetActive(true);
+    ShowPanel(mapPanel);
+}
+
+public void CloseMap()
+{
+    if (CurrentModal != ModalEnum.Map) return;
+
+    HideCurrentPanel();
+    modalRoot.SetActive(false);
+    CurrentModal = ModalEnum.None;
+}
+
 }
