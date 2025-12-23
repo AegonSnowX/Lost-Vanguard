@@ -3,26 +3,13 @@ using UnityEngine;
 public class ElectricalInteractable : MonoBehaviour,IInteractable
 {
 
-    public void Focus()
-    {
-      //  throw new System.NotImplementedException();
-    }
+    [SerializeField] private BridgeRoomController bridgeRoom;
 
     public void Interact(PlayerStateController player)
     {
-        if (ControlRoomManager.Instance.IsMainPowerOn)
-        {
-            Debug.Log("Main power is already on.");
-            return;
-        }else{
-       ControlRoomManager.Instance.RestoreMainPower();}
-
+        bridgeRoom.RestoreLocalPower();
     }
 
-    public void Unfocus()
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    
+    public void Focus() { }
+    public void Unfocus() { }
 }

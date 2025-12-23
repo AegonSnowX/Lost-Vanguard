@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad682a0753d56d478fbdac6e60e9b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  bridgeRoom: {fileID: 1556444286}
 --- !u!1 &78499197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,6 +2542,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 580344072}
   - {fileID: 2128763516}
   - {fileID: 1522092268}
   - {fileID: 418836999}
@@ -2797,12 +2799,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580344070}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.42491, y: 2.45923, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -614.9249, y: -322.04077, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 480191322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874304128
 GameObject:
@@ -2813,7 +2815,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874304130}
-  - component: {fileID: 874304129}
   - component: {fileID: 874304131}
   m_Layer: 0
   m_Name: GameManager
@@ -2822,25 +2823,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &874304129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874304128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb45bfd33484eb84cb37ea38958c1677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  emergencyLights:
-  - {fileID: 154775396}
-  - {fileID: 1716952493}
-  - {fileID: 1195937676}
-  mainLight: {fileID: 1880819361}
-  targetIntensity: 1
-  fadeDuration: 5
 --- !u!4 &874304130
 Transform:
   m_ObjectHideFlags: 0
@@ -2865,9 +2847,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 874304128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0ddb89bb8efd643ba12630e1f268f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 043e35f4c95fa4a4c8273bbe87b06e57, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControlRoomManager
+  m_EditorClassIdentifier: Assembly-CSharp::MasterShipController
 --- !u!1 &976337262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3979,6 +3961,57 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5970571, y: 0.5878885}
   m_EdgeRadius: 0
+--- !u!1 &1556444285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556444287}
+  - component: {fileID: 1556444286}
+  m_Layer: 0
+  m_Name: BridgeRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1556444286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556444285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8b56cf3c2bea440a26d6a7048b234f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BridgeRoomController
+  roomId: 
+  currentStatus: 0
+  emergencyLights:
+  - {fileID: 154775395}
+  - {fileID: 1716952492}
+  - {fileID: 1195937674}
+  mainLight: {fileID: 1880819361}
+--- !u!4 &1556444287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556444285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.49878, y: -1.85273, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1596143733
 GameObject:
   m_ObjectHideFlags: 0
@@ -8254,7 +8287,6 @@ SceneRoots:
   - {fileID: 2038775623}
   - {fileID: 1699903984}
   - {fileID: 480191322}
-  - {fileID: 580344072}
   - {fileID: 1540867032}
   - {fileID: 408752984}
   - {fileID: 137478388}
@@ -8267,3 +8299,4 @@ SceneRoots:
   - {fileID: 1996905918}
   - {fileID: 1880819362}
   - {fileID: 874304130}
+  - {fileID: 1556444287}
