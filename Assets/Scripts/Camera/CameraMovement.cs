@@ -8,6 +8,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector2 deadZoneSize = new Vector2(1.5f, 1.0f);
 
     private Vector3 offset;
+   void Awake()
+{
+    if (target == null) return;
+
+    Vector3 pos = target.position;
+    pos.z = transform.position.z; // preserve camera depth
+    transform.position = pos;
+}
+
 
     void Start()
     {
@@ -17,8 +26,9 @@ public class CameraFollow : MonoBehaviour
             enabled = false;
             return;
         }
-
+ 
         offset = transform.position - target.position;
+      
     }
 
     void LateUpdate()

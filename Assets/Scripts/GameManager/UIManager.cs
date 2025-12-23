@@ -56,6 +56,9 @@ public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
             case TerminalType.ControlRoom:
                 ShowPanel(controlroomPanel);
                 break;
+                case TerminalType.NavigationTerminal:
+                ShowPanel(mapPanel);
+                break;
         }
     }
 

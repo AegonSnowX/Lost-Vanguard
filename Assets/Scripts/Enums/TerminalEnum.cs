@@ -5,5 +5,7 @@ public enum TerminalType
     MasterTerminal,
     ReactorTerminal,
 
+    NavigationTerminal,
+
     //toDo later on
 }

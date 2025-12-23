@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     private IInteractable currentInteractable;
     private ICancelableInteractable cancelableInteractable;
     private readonly List<IInteractable> interactablesInRange = new();
-
+   // private bool  isMapOpen = false;
 
     void Awake()
     {
@@ -25,26 +25,23 @@ public class PlayerInteraction : MonoBehaviour
         
 
         if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(stateController.CanInteract)
             {
     Debug.Log("MapOpen");
     if (UIManager.Instance.CurrentModal == ModalEnum.None)
     {
         stateController.LockAll();
         UIManager.Instance.OpenMap();
-    }
-    else if (UIManager.Instance.CurrentModal == ModalEnum.Map)
+    }}
+    else if (UIManager.Instance.CurrentModal == ModalEnum.Map&& !stateController.CanInteract)
     {
         UIManager.Instance.CloseMap();
         stateController.UnlockAll();
+     //   isMapOpen=false;
     }
 }
         
-
-
-
-
-
-
         // If player is currently interacting with something
         if (!stateController.CanInteract)
     {
