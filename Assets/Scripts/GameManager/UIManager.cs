@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject modalRoot;
     [Header("Ship Status UI")]
 [SerializeField] private TextMeshProUGUI shipStatusText;
+//[SerializeField] private TextMeshProUGUI Room1StatusText;
 
 
     [Header("Terminal Panels")]
