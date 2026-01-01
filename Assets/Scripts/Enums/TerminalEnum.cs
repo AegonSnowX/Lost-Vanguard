@@ -6,6 +6,7 @@ public enum TerminalType
     ReactorTerminal,
 
     NavigationTerminal,
+    ShipStatusTerminal,
 
     //toDo later on
 }

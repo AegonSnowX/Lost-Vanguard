@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class MasterShipController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MasterShipController : MonoBehaviour
 
     private readonly Dictionary<string, RoomStatus> roomStatuses = new();
     private readonly List<RoomController> registeredRooms = new();
+      public event Action OnShipStatusChanged;
 
     private void Awake()
     {
@@ -16,24 +18,25 @@ public class MasterShipController : MonoBehaviour
     // Registration
     public void RegisterRoom(RoomController room)
     {
-        if (room == null || registeredRooms.Contains(room)) return;
+        if (room == null) return;
 
-        registeredRooms.Add(room);
-        roomStatuses[room.RoomId] = room.CurrentStatus;
+        roomStatuses.Remove(room.RoomId);
+        OnShipStatusChanged?.Invoke();
     }
 
     public void UnregisterRoom(RoomController room)
     {
-        if (room == null) return;
+       if (room == null) return;
 
-        registeredRooms.Remove(room);
         roomStatuses.Remove(room.RoomId);
+        OnShipStatusChanged?.Invoke();
     }
 
     // Reporting (rooms → ship)
     public void UpdateRoomStatus(string roomId, RoomStatus status)
     {
         roomStatuses[roomId] = status;
+        OnShipStatusChanged?.Invoke();
         Debug.Log($"[SHIP] Room {roomId} status: {status}");
     }
 

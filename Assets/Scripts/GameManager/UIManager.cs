@@ -1,16 +1,22 @@
 using System;
 using UnityEngine;
+using TMPro;
+using System.Text;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
     [SerializeField] private GameObject modalRoot;
+    [Header("Ship Status UI")]
+[SerializeField] private TextMeshProUGUI shipStatusText;
+
 
     [Header("Terminal Panels")]
     [SerializeField] private GameObject communicationPanel;
     [SerializeField] private GameObject reactorPanel;
     [SerializeField] private GameObject masterPanel;
     [SerializeField] private GameObject controlroomPanel;
+    [SerializeField] private GameObject shipstatusPanel;
 
     private GameObject currentPanel;
     [SerializeField]private GameObject mapPanel;
@@ -59,6 +65,10 @@ public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
                 case TerminalType.NavigationTerminal:
                 ShowPanel(mapPanel);
                 break;
+                case TerminalType.ShipStatusTerminal:
+                ShowPanel(shipstatusPanel);
+                 RefreshShipStatus();
+                break;
         }
     }
 
@@ -99,6 +109,34 @@ public void CloseMap()
     HideCurrentPanel();
     modalRoot.SetActive(false);
     CurrentModal = ModalEnum.None;
+}
+
+private void OnEnable()
+{
+    if (MasterShipController.Instance != null)
+        MasterShipController.Instance.OnShipStatusChanged += RefreshShipStatus;
+}
+
+private void OnDisable()
+{
+    if (MasterShipController.Instance != null)
+        MasterShipController.Instance.OnShipStatusChanged -= RefreshShipStatus;
+}
+
+private void RefreshShipStatus()
+{
+    if (shipStatusText == null) return;
+    if (MasterShipController.Instance == null) return;
+
+    var rooms = MasterShipController.Instance.GetAllRoomStatuses();
+    var sb = new StringBuilder();
+
+    foreach (var room in rooms)
+    {
+        sb.AppendLine($"{room.Key}: {room.Value}");
+    }
+
+    shipStatusText.text = sb.ToString();
 }
 
 }
