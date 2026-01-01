@@ -1,11 +1,18 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 public class BridgeRoomController : RoomController
 {
     [Header("Lights")]
     [SerializeField] private GameObject[] emergencyLights;
     [SerializeField] private Light2D mainLight;
+
+    [Header("Fade Settings")]
+    [SerializeField] private float mainLightTargetIntensity = 1f;
+    [SerializeField] private float fadeDuration = 0.8f;
+
+    private Coroutine powerRoutine;
 
     protected override void Start()
     {
@@ -16,28 +23,53 @@ public class BridgeRoomController : RoomController
 
     public void RestoreLocalPower()
     {
-        ExitEmergencyMode();
-        SetStatus(RoomStatus.Normal);
+        if (powerRoutine != null)
+            StopCoroutine(powerRoutine);
 
-        // Inform ship-wide system
+        powerRoutine = StartCoroutine(RestorePowerSequence());
+
+        // Inform ship-wide system immediately (intent is declared)
         MasterShipController.Instance.RequestMainPowerRestored();
     }
 
     private void EnterEmergencyMode()
     {
         foreach (var light in emergencyLights)
-            if (light != null) light.SetActive( true);
+            if (light != null)
+                light.SetActive(true);
 
         if (mainLight != null)
+        {
+            mainLight.enabled = true;
             mainLight.intensity = 0f;
+        }
     }
 
-    private void ExitEmergencyMode()
+    private IEnumerator RestorePowerSequence()
     {
-        foreach (var light in emergencyLights)
-            if (light != null) light.SetActive (false);
+        // Fade main light in
+        float time = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / fadeDuration;
+
+            if (mainLight != null)
+                mainLight.intensity = Mathf.Lerp(0f, mainLightTargetIntensity, t);
+
+            yield return null;
+        }
 
         if (mainLight != null)
-            mainLight.intensity = 1f;
+            mainLight.intensity = mainLightTargetIntensity;
+
+        // Now turn off emergency lights
+        foreach (var light in emergencyLights)
+            if (light != null)
+                light.SetActive(false);
+
+        // Room is now stable
+        SetStatus(RoomStatus.Normal);
     }
 }
