@@ -2,8 +2,12 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
 
-public class BridgeRoomController : RoomController, IRoomPowerControllable
+public class CentralCorridorController : RoomController,IRoomPowerControllable
 {
+   
+
+
+
     [Header("Lights")]
     [SerializeField] private GameObject[] emergencyLights;
     [SerializeField] private Light2D mainLight;
@@ -22,7 +26,7 @@ public class BridgeRoomController : RoomController, IRoomPowerControllable
     }
 
     public void RestoreLocalPower()
-    {
+    {Debug.Log("it works");
         if (powerRoutine != null)
             StopCoroutine(powerRoutine);
 

@@ -1,10 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using System.Collections;
 
-public class BridgeRoomController : RoomController, IRoomPowerControllable
+public class AirLockRoomController : RoomController , IRoomPowerControllable 
 {
-    [Header("Lights")]
+ [Header("Lights")]
     [SerializeField] private GameObject[] emergencyLights;
     [SerializeField] private Light2D mainLight;
 
@@ -73,3 +73,4 @@ public class BridgeRoomController : RoomController, IRoomPowerControllable
         SetStatus(RoomStatus.Normal);
     }
 }
+
