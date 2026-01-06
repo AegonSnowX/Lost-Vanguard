@@ -8,5 +8,7 @@ public enum TerminalType
     NavigationTerminal,
     ShipStatusTerminal,
 
+    BioRoomTerminal,
+
     //toDo later on
 }

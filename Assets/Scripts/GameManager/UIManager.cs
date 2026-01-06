@@ -18,9 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject masterPanel;
     [SerializeField] private GameObject controlroomPanel;
     [SerializeField] private GameObject shipstatusPanel;
-
+    [SerializeField] private GameObject BioRoomPanel;
+  [SerializeField]private GameObject mapPanel;
     private GameObject currentPanel;
-    [SerializeField]private GameObject mapPanel;
+  
     public bool IsModalOpen { get; private set; }
 
 public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
@@ -40,6 +41,7 @@ public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
         reactorPanel.SetActive(false);
         masterPanel.SetActive(false);
         controlroomPanel.SetActive(false);
+        BioRoomPanel.SetActive(false);
     }
 
     public void OpenTerminal(TerminalType type)
@@ -70,6 +72,10 @@ public ModalEnum CurrentModal { get; private set; } = ModalEnum.None;
                 ShowPanel(shipstatusPanel);
                  RefreshShipStatus();
                 break;
+                case TerminalType.BioRoomTerminal:
+                ShowPanel(BioRoomPanel);
+                break;
+                
         }
     }
 
