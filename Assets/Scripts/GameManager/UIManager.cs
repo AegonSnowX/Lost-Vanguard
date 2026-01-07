@@ -137,12 +137,21 @@ private void RefreshShipStatus()
 
     var rooms = MasterShipController.Instance.GetAllRoomStatuses();
     var sb = new StringBuilder();
-
+sb.AppendLine("Ship Status \n \n");
     foreach (var room in rooms)
     {
-        sb.AppendLine($"{room.Key}: {room.Value}");
+        switch (room.Key){
+                case "1":  sb.AppendLine($"Bridge Control: {room.Value}");break;
+                case "2": sb.AppendLine($"Central Corridor: {room.Value}");break;
+                case "3":  sb.AppendLine($"Bio Room: {room.Value}");break;    
+                case "4":  sb.AppendLine($"Airlock: {room.Value}");break;
+                default: sb.AppendLine("Critical System Failure"); break;
+            
+            }
+       
+       
     }
-
+ 
     shipStatusText.text = sb.ToString();
 }
 

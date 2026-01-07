@@ -21,8 +21,10 @@ public class ElectricalInteractable : MonoBehaviour, IInteractable
 
     public void Interact(PlayerStateController player)
     {
+      //  powerTarget.GetAllRoomStatuses
         powerTarget?.RestoreLocalPower();
         Debug.Log(powerTarget + " interacted" + roomTarget);
+    //  this.GetComponentInParent<ElectricalInteractable>().enabled=false;
     }
 
     public void Focus() { }
