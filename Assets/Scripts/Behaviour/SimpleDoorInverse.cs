@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SimpleDoorInverse: MonoBehaviour, IInteractable
 {
-   [SerializeField] GameObject bridgeDoor;
+   [SerializeField] GameObject door;
     [SerializeField] private Sprite spriteOpen;
     [SerializeField] private Sprite spriteClosed;
     private SpriteRenderer sr ;
@@ -10,10 +10,10 @@ public class SimpleDoorInverse: MonoBehaviour, IInteractable
     
     private void Awake()
     {
-        if (bridgeDoor != null)
+        if (door != null)
         {
-            sr=bridgeDoor.GetComponent<SpriteRenderer>();
-            doorCollider = bridgeDoor.GetComponent<BoxCollider2D>();
+            sr=door.GetComponent<SpriteRenderer>();
+            doorCollider = door.GetComponent<BoxCollider2D>();
         }
     }
 
